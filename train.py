@@ -16,7 +16,7 @@ logging.config.dictConfig(
 from os import environ
 
 environ["ACCELERATE_LOG_LEVEL"] = "WARNING"
-environ["CUDA_VISIBLE_DEVICES"] = '5'
+environ["CUDA_VISIBLE_DEVICES"] = '6'
 
 from helpers.training.trainer import Trainer
 from helpers.training.state_tracker import StateTracker
@@ -73,7 +73,7 @@ if __name__ == "__main__":
             f"\nError: {e}"
         )
     try:
-        config = load_config('config.json')
+        config = load_config('/home/shilin/shilin/SimpleTuner/config/config.json')
         config = convert_dict_to_args(config)
         trainer = Trainer(
             exit_on_error=True,
