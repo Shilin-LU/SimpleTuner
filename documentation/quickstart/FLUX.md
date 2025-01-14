@@ -79,6 +79,7 @@ Depending on your system, you will run one of 3 commands:
 poetry install -C install/apple
 
 # Linux
+export PYTHON_KEYRING_BACKEND=keyring.backends.null.Keyring
 poetry install
 
 # Linux with ROCM
