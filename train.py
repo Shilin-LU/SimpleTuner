@@ -16,6 +16,7 @@ logging.config.dictConfig(
 from os import environ
 
 environ["ACCELERATE_LOG_LEVEL"] = "WARNING"
+environ["CUDA_VISIBLE_DEVICES"] = '5'
 
 from helpers.training.trainer import Trainer
 from helpers.training.state_tracker import StateTracker
@@ -23,6 +24,42 @@ from helpers import log_format
 
 logger = logging.getLogger("SimpleTuner")
 logger.setLevel(environ.get("SIMPLETUNER_LOG_LEVEL", "INFO"))
+
+import os, json
+def load_config(file_path):
+    if not os.path.exists(file_path):
+        print(f"警告: 配置文件未找到 - {file_path}，将使用默认配置。")
+        return {}
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            return json.load(file)
+    except json.JSONDecodeError as e:
+        print(f"错误: JSON解码失败 - {e}")
+    except Exception as e:
+        print(f"发生未知错误: {e}")
+    return {}
+
+def convert_dict_to_args(input_dict):
+    args_list = []
+    for key, value in input_dict.items():
+        if isinstance(value, str):
+            lower_value = value.lower()
+            if lower_value == 'true':
+                args_list.append(key)
+            elif lower_value == 'false':
+                # 忽略值为 false 的选项
+                continue
+            else:
+                args_list.append(f"{key}={value}")
+        elif isinstance(value, bool):
+            if value:
+                args_list.append(key)
+            else:
+                # 忽略值为 False 的选项
+                continue
+        else:
+            args_list.append(f"{key}={value}")
+    return args_list
 
 if __name__ == "__main__":
     trainer = None
@@ -36,8 +73,11 @@ if __name__ == "__main__":
             f"\nError: {e}"
         )
     try:
+        config = load_config('config.json')
+        config = convert_dict_to_args(config)
         trainer = Trainer(
             exit_on_error=True,
+            config=config,
         )
         trainer.configure_webhook()
         trainer.init_noise_schedule()
