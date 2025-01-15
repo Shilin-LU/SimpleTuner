@@ -1,5 +1,5 @@
 *.code-workspace
-multidatabackend*json
+# multidatabackend*json
 # Python and virtual environment files
 output/
 temp/
@@ -48,11 +48,11 @@ Thumbs.db
 files.tbz
 */config/auth.json
 work
-multidatabackend.json
-multidatabackend_sd2x.json
+# multidatabackend.json
+# multidatabackend_sd2x.json
 
 # config/*.json
-config/*.env
+# config/*.env
 wandb/
 cache/
 vae_cache/
@@ -60,8 +60,8 @@ vendor/
 inference/
 webhooks.json
 untracked/
-config/*/
-config/*.toml
+# config/*/
+# config/*.toml
 static
 templates
 api_state.json
