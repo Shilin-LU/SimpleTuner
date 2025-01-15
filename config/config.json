@@ -10,8 +10,8 @@
     "--lycoris_config": "config/lycoris_config.json",
     "--max_train_steps": 5000,
     "--num_train_epochs": 0,
-    "--checkpointing_steps": 500,
-    "--checkpoints_total_limit": 5,
+    "--checkpointing_steps": 200,
+    "--checkpoints_total_limit": 10,
     "--attention_mechanism": "diffusers",
     "--tracker_project_name": "lora-training",
     "--tracker_run_name": "few_10k_lokr",
@@ -37,5 +37,8 @@
     "--lr_scheduler": "polynomial",
     "--lr_warmup_steps": 100,
     "--base_model_precision": "int8-quanto",
-    "--validation_torch_compile": "false"
+    "--validation_torch_compile": "false",
+    "--user_prompt_library": "config/user_prompt_library.json",
+    "--evaluation_type": "clip",
+    "--pretrained_evaluation_model_name_or_path": "openai/clip-vit-large-patch14-336"
 }

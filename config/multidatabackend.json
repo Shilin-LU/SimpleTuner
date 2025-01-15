@@ -33,7 +33,7 @@
       "caption_strategy": "instanceprompt",
       "instance_prompt": "dog",
       "metadata_backend": "discovery",
-      "repeats": 1000
+      "repeats": 5000
     },
     {
       "id": "dreambooth-subject-512",
@@ -49,7 +49,7 @@
       "caption_strategy": "instanceprompt",
       "instance_prompt": "dog",
       "metadata_backend": "discovery",
-      "repeats": 1000
+      "repeats": 5000
     },
     {
       "id": "text-embeds",
