@@ -51,7 +51,7 @@ work
 multidatabackend.json
 multidatabackend_sd2x.json
 
-config/*.json
+# config/*.json
 config/*.env
 wandb/
 cache/
